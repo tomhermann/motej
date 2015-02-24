@@ -1,20 +1,21 @@
 subprojects {
+    apply plugin: 'maven'
     apply plugin: 'java'
     apply plugin: 'eclipse'
 	
-	sourceCompatibility = 1.7
-	targetCompatibility = 1.7
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
 	
     repositories {
-        jcenter()
+		jcenter()
     }
 	
-	eclipse {
-		classpath {
-			 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
-			 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7'
-		}
-	}
+    eclipse {
+        classpath {
+            containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+            containers "org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-${sourceCompatibility}"
+        }
+    }
 }
 
 task wrapper(type: Wrapper) {
