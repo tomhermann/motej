@@ -1,0 +1,6 @@
+dependencies {
+    compile 'net.sf.bluecove:bluecove:2.1.0'
+    compile 'org.slf4j:slf4j-api:1.7.7'
+
+    testCompile "junit:junit:4.11"
+}
