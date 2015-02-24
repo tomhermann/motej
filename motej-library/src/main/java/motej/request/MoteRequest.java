@@ -21,7 +21,5 @@ package motej.request;
  * @author <a href="mailto:vfritzsch@users.sourceforge.net">Volker Fritzsch</a>
  */
 public interface MoteRequest {
-
-	public abstract byte[] getBytes();
-
+	byte[] getBytes();
 }

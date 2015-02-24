@@ -24,33 +24,20 @@ import motejx.extensions.classic.RightAnalogTriggerEvent;
 /**
  * 
  * <p>
+ * 
  * @author <a href="mailto:vfritzsch@users.sourceforge.net">Volker Fritzsch</a>
  */
-public abstract class AbstractClassicControllerAnalogAdapter implements
-		ClassicControllerAnalogListener {
+public abstract class AbstractClassicControllerAnalogAdapter implements ClassicControllerAnalogListener {
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#leftAnalogStickChanged(motejx.extensions.classic.LeftAnalogStickEvent)
-	 */
 	public void leftAnalogStickChanged(LeftAnalogStickEvent evt) {
 	}
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#leftAnalogTriggerChanged(motejx.extensions.classic.LeftAnalogTriggerEvent)
-	 */
 	public void leftAnalogTriggerChanged(LeftAnalogTriggerEvent evt) {
 	}
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#rightAnalogStickChanged(motejx.extensions.classic.RightAnalogStickEvent)
-	 */
 	public void rightAnalogStickChanged(RightAnalogStickEvent evt) {
 	}
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#rightAnalogTriggerChanged(motejx.extensions.classic.RightAnalogTriggerEvent)
-	 */
 	public void rightAnalogTriggerChanged(RightAnalogTriggerEvent evt) {
 	}
-
 }

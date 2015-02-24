@@ -33,7 +33,7 @@ public class ExtensionProvider {
 	
 	private static Map<String, Class<? extends Extension>> lookup;
 	
-	private Logger log = LoggerFactory.getLogger(ExtensionProvider.class);
+	private static final Logger log = LoggerFactory.getLogger(ExtensionProvider.class);
 	
 	@SuppressWarnings("unchecked")
 	public ExtensionProvider() {

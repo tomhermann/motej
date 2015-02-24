@@ -42,14 +42,7 @@ public class ReadMemoryRequest implements MoteRequest {
 		data[2] = 0x00;
 		
 		System.arraycopy(offset, 0, data, 3, 3);
-//		for (int i = 0; i < 3; i++) {
-//			data[3 + i] = offset[i];
-//		}
-		
 		System.arraycopy(size, 0, data, 6, 2);
-//		for (int i = 0; i < 2; i++) {
-//			data[6 + i] = size[i];
-//		}
 		
 		return data;
 	}

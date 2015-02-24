@@ -68,36 +68,8 @@ public class IrPoint extends Point {
 		this.intensity = p.intensity;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == this)
-			return true;
-		if (obj instanceof IrPoint) {
-			IrPoint p = (IrPoint) obj;
-			return (x == p.x) && (y == p.y) && (size == p.size) && 
-				(max.x == p.max.x) && (max.y == p.max.y) &&
-				(min.x == p.min.x) && (min.y == p.min.y) &&
-				(intensity == p.intensity);
-		}
-		return super.equals(obj);
-	}
-
 	public int getSize() {
 		return size;
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 17;
-		hash = hash * 31 + x;
-		hash = hash * 31 + y;
-		hash = hash * 31 + size;
-		hash = hash * 31 + max.x;
-		hash = hash * 31 + max.y;
-		hash = hash * 31 + min.x;
-		hash = hash * 31 + min.y;
-		hash = hash * 31 + intensity;
-		return hash;
 	}
 
 	public void setSize(int size) {
@@ -128,4 +100,31 @@ public class IrPoint extends Point {
 		this.intensity = intensity;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == this)
+			return true;
+		if (obj instanceof IrPoint) {
+			IrPoint p = (IrPoint) obj;
+			return (x == p.x) && (y == p.y) && (size == p.size) && 
+				(max.x == p.max.x) && (max.y == p.max.y) &&
+				(min.x == p.min.x) && (min.y == p.min.y) &&
+				(intensity == p.intensity);
+		}
+		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 17;
+		hash = hash * 31 + x;
+		hash = hash * 31 + y;
+		hash = hash * 31 + size;
+		hash = hash * 31 + max.x;
+		hash = hash * 31 + max.y;
+		hash = hash * 31 + min.x;
+		hash = hash * 31 + min.y;
+		hash = hash * 31 + intensity;
+		return hash;
+	}
 }

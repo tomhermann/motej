@@ -36,8 +36,7 @@ public class CalibrationDataReport {
 
 	private int gravityZ;
 
-	public CalibrationDataReport(int zeroX, int zeroY, int zeroZ,
-			int gravityX, int gravityY, int gravityZ) {
+	public CalibrationDataReport(int zeroX, int zeroY, int zeroZ, int gravityX, int gravityY, int gravityZ) {
 		this.zeroX = zeroX;
 		this.zeroY = zeroY;
 		this.zeroZ = zeroZ;
@@ -102,10 +101,8 @@ public class CalibrationDataReport {
 
 	@Override
 	public String toString() {
-		return "CalibrationDataReport[zeroPointAxisX: " + zeroX
-				+ ", zeroPointAxisY: " + zeroY + ", zeroPointAxisZ: " + zeroZ
-				+ ", plusOneGPointAxisX: " + gravityX
-				+ ", plusOneGPointAxisY: " + gravityY
+		return "CalibrationDataReport[zeroPointAxisX: " + zeroX + ", zeroPointAxisY: " + zeroY + ", zeroPointAxisZ: "
+				+ zeroZ + ", plusOneGPointAxisX: " + gravityX + ", plusOneGPointAxisY: " + gravityY
 				+ ", plusOneGPointAxisZ: " + gravityZ + "]";
 	}
 }

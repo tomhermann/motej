@@ -86,28 +86,4 @@ public class BalanceBoardCalibrationData {
 			sensorD[weight.idx] = data;
 		}
 	}
-
-//	public void setCalibration(char sensor, byte[] calibrationData, int index) {
-//		System.out.println(index);
-//		switch (sensor) {
-//		case SENSOR_A:
-//			this.calibrationA.add(index, ((calibrationData[0] & 0xff) * 256)
-//					+ (calibrationData[1] & 0xff));
-//			break;
-//		case SENSOR_B:
-//			this.calibrationB.add(index, ((calibrationData[0] & 0xff) * 256)
-//					+ (calibrationData[1] & 0xff));
-//			break;
-//		case SENSOR_C:
-//			this.calibrationC.add(index, ((calibrationData[0] & 0xff) * 256)
-//					+ (calibrationData[1] & 0xff));
-//			break;
-//		case SENSOR_D:
-//			this.calibrationD.add(index, ((calibrationData[0] & 0xff) * 256)
-//					+ (calibrationData[1] & 0xff));
-//			break;
-//		default:
-//			;
-//		}
-//	}
 }

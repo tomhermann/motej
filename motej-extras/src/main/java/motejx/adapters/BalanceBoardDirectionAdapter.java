@@ -21,12 +21,17 @@ import motejx.extensions.balanceboard.BalanceBoardListener;
 /**
  * 
  * <p>
+ * 
  * @author <a href="mailto:vfritzsch@users.sourceforge.net">Volker Fritzsch</a>
  */
 public abstract class BalanceBoardDirectionAdapter implements BalanceBoardListener {
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.balanceboard.BalanceBoardListener#balanceBoardChanged(motejx.extensions.balanceboard.BalanceBoardEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * motejx.extensions.balanceboard.BalanceBoardListener#balanceBoardChanged
+	 * (motejx.extensions.balanceboard.BalanceBoardEvent)
 	 */
 	public void balanceBoardChanged(BalanceBoardEvent evt) {
 		float left = evt.getTopLeftInterpolated() + evt.getBottomLeftInterpolated();
@@ -34,13 +39,13 @@ public abstract class BalanceBoardDirectionAdapter implements BalanceBoardListen
 		float top = evt.getTopLeftInterpolated() + evt.getTopRightInterpolated();
 		float bottom = evt.getBottomLeftInterpolated() + evt.getBottomRightInterpolated();
 		float total = top + bottom;
-		if (total != 0) {		
+		if (total != 0) {
 			float x = (right - left) / total;
 			float y = (top - bottom) / total;
-			directionChanged(x,y);
+			directionChanged(x, y);
 		}
 	}
 
 	public abstract void directionChanged(float x, float y);
-	
+
 }

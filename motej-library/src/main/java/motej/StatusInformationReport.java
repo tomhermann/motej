@@ -36,8 +36,7 @@ public class StatusInformationReport {
 	// fully charged might be 0xc8 (wiili.org)
 	private byte batteryLevel;
 
-	public StatusInformationReport(boolean[] ledEnabled,
-			boolean speakerEnabled, boolean continuousReportingEnabled,
+	public StatusInformationReport(boolean[] ledEnabled, boolean speakerEnabled, boolean continuousReportingEnabled,
 			boolean extensionControllerConnected, byte batteryLevel) {
 		this.ledEnabled = ledEnabled.clone();
 		this.speakerEnabled = speakerEnabled;
@@ -48,7 +47,8 @@ public class StatusInformationReport {
 
 	/**
 	 * The current battery level. Fully charged might be 0xc8 (see <a
-	 * href="http://www.wiili.org/index.php/Wiimote#Batteries">www.wiili.org</a>).
+	 * href="http://www.wiili.org/index.php/Wiimote#Batteries"
+	 * >www.wiili.org</a>).
 	 * 
 	 * @return the battery level
 	 */
@@ -94,12 +94,9 @@ public class StatusInformationReport {
 
 	@Override
 	public String toString() {
-		return "StatusInformation[BatteryLevel: " + batteryLevel
-				+ ", ExtensionControllerConnected: "
-				+ extensionControllerConnected + ", SpeakerEnabled: "
-				+ speakerEnabled + ", ContinuousReportingEnabled: "
-				+ continuousReportingEnabled + ", LedEnabled: {"
-				+ ledEnabled[0] + ", " + ledEnabled[1] + ", " + ledEnabled[2]
-				+ ", " + ledEnabled[3] + "}]";
+		return "StatusInformation[BatteryLevel: " + batteryLevel + ", ExtensionControllerConnected: "
+				+ extensionControllerConnected + ", SpeakerEnabled: " + speakerEnabled
+				+ ", ContinuousReportingEnabled: " + continuousReportingEnabled + ", LedEnabled: {" + ledEnabled[0]
+				+ ", " + ledEnabled[1] + ", " + ledEnabled[2] + ", " + ledEnabled[3] + "}]";
 	}
 }

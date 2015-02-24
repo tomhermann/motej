@@ -39,7 +39,8 @@ public class BalanceBoardListenerPanel implements BalanceBoardListener {
 	private BalanceBoardEvent event;
 	
 	private class Model extends AbstractTableModel {
-	
+		private static final long serialVersionUID = 1L;
+
 		public Object getValueAt(int rowIndex, int columnIndex) {
 			if (columnIndex == 0) {
 			switch(rowIndex) {

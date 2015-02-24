@@ -30,9 +30,6 @@ public class RightAnalogStickEvent extends AnalogStickEvent {
 		super(source, point);
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == this)
@@ -43,9 +40,6 @@ public class RightAnalogStickEvent extends AnalogStickEvent {
 		return super.equals(obj);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		int hash = 17;

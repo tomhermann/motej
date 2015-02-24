@@ -23,7 +23,5 @@ import java.util.EventListener;
  * @author <a href="mailto:vfritzsch@users.sourceforge.net">Volker Fritzsch</a>
  */
 public interface MoteFinderListener extends EventListener {
-
-	public void moteFound(Mote mote);
-	
+	void moteFound(Mote mote);
 }

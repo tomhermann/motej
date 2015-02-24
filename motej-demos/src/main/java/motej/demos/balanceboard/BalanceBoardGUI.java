@@ -62,6 +62,7 @@ public class BalanceBoardGUI {
 	};
 	
 	private Action findBalanceBoardAction = new AbstractAction("Find Balance Board") {
+		private static final long serialVersionUID = 1L;
 	
 		public void actionPerformed(ActionEvent e) {
 			MoteFinder finder = MoteFinder.getMoteFinder();
@@ -71,6 +72,7 @@ public class BalanceBoardGUI {
 	};
 	
 	private Action statusInformationAction = new AbstractAction("Status Information") {
+		private static final long serialVersionUID = 1L;
 		
 		public void actionPerformed(ActionEvent e) {
 			final StatusInformationReportPanel statusInformationReportPanel = new StatusInformationReportPanel(mote);
@@ -85,6 +87,7 @@ public class BalanceBoardGUI {
 	};
 	
 	private Action moteCalibrationAction = new AbstractAction("Mote Calibration") {
+		private static final long serialVersionUID = 1L;
 		
 		public void actionPerformed(ActionEvent e) {
 			final CalibrationDataReportPanel p = new CalibrationDataReportPanel(mote.getCalibrationDataReport());
@@ -99,6 +102,7 @@ public class BalanceBoardGUI {
 	};
 	
 	private Action bbCalibrationAction = new AbstractAction("Balance Board Calibration") {
+		private static final long serialVersionUID = 1L;
 		
 		public void actionPerformed(ActionEvent e) {
 			final BalanceBoardCalibrationDataPanel p = new BalanceBoardCalibrationDataPanel(mote.<BalanceBoard>getExtension().getCalibrationData());
@@ -113,6 +117,7 @@ public class BalanceBoardGUI {
 	};
 	
 	private Action bbListenerAction = new AbstractAction("Balance Board Listener") {
+		private static final long serialVersionUID = 1L;
 		
 		public void actionPerformed(ActionEvent e) {
 			final BalanceBoardListenerPanel p = new BalanceBoardListenerPanel(mote.<BalanceBoard>getExtension());
@@ -127,15 +132,17 @@ public class BalanceBoardGUI {
 	};
 	
 	protected Action report0x32Action = new AbstractAction("Report: 0x32") {
-		
-		public void actionPerformed(ActionEvent arg0) {
+		private static final long serialVersionUID = 1L;
+
+		public void actionPerformed(ActionEvent e) {
 			mote.setReportMode(ReportModeRequest.DATA_REPORT_0x32);
 		};
 		
 	};
 	
 	protected Action graphicalPanelAction = new AbstractAction("Graphical Panel") {
-		
+		private static final long serialVersionUID = 1L;
+
 		public void actionPerformed(ActionEvent e) {
 			final BalanceBoardGraphicalPanel p1 = new BalanceBoardGraphicalPanel(mote.<BalanceBoard>getExtension());
 			final BalanceBoardListenerPanel p2 = new BalanceBoardListenerPanel(mote.<BalanceBoard>getExtension());

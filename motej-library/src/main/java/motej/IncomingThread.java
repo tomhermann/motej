@@ -28,16 +28,17 @@ import org.slf4j.LoggerFactory;
 /**
  * 
  * <p>
+ * 
  * @author <a href="mailto:vfritzsch@users.sourceforge.net">Volker Fritzsch</a>
  */
 class IncomingThread extends Thread {
-	
+
 	private static final long THREAD_SLEEP = 1l;
 
-	private Logger log = LoggerFactory.getLogger(IncomingThread.class);
+	private static final Logger log = LoggerFactory.getLogger(IncomingThread.class);
 
 	private Mote source;
-	
+
 	private Extension extension;
 
 	private volatile boolean active;
@@ -48,24 +49,22 @@ class IncomingThread extends Thread {
 
 	private int[] interleavedAccelerometerData;
 
-	protected IncomingThread(Mote source, String btaddress)
-			throws IOException, InterruptedException {
+	protected IncomingThread(Mote source, String btaddress) throws IOException, InterruptedException {
 		super("in:" + btaddress);
 		this.source = source;
-		
-		String l2cap = "btl2cap://" + btaddress
-		+ ":13;authenticate=false;encrypt=false;master=false";
-		
+
+		String l2cap = "btl2cap://" + btaddress + ":13;authenticate=false;encrypt=false;master=false";
+
 		if (log.isDebugEnabled()) {
 			log.debug("Opening incoming connection: " + l2cap);
 		}
-		
+
 		incoming = (L2CAPConnection) Connector.open(l2cap, Connector.READ, true);
 
 		if (log.isDebugEnabled()) {
 			log.debug("Incoming connection is " + incoming.toString());
 		}
-		
+
 		Thread.sleep(THREAD_SLEEP);
 		active = true;
 	}
@@ -97,7 +96,7 @@ class IncomingThread extends Thread {
 		int x3 = bytes[offset + 8] & 0xff ^ (bytes[offset + 7] & 0x03) << 8;
 		int y3 = bytes[offset + 9] & 0xff ^ (bytes[offset + 7] & 0x0c) << 6;
 		IrPoint p3 = new IrPoint(x3, y3);
-		
+
 		source.fireIrCameraEvent(IrCameraMode.BASIC, p0, p1, p2, p3);
 	}
 
@@ -129,7 +128,7 @@ class IncomingThread extends Thread {
 
 		source.fireIrCameraEvent(IrCameraMode.EXTENDED, p0, p1, p2, p3);
 	}
-	
+
 	protected void parseExtensionData(byte[] bytes, int offset, int length) {
 		if (extension == null) {
 			return;
@@ -138,7 +137,7 @@ class IncomingThread extends Thread {
 		System.arraycopy(bytes, offset, extensionData, 0, length);
 		extension.parseExtensionData(extensionData);
 	}
-	
+
 	protected void parseFullIrCameraData(byte[] bytes, int reportMode) {
 		if (interleavedIrCameraData == null) {
 			interleavedIrCameraData = new IrPoint[4];
@@ -153,7 +152,7 @@ class IncomingThread extends Thread {
 			int ymax0 = bytes[11] & 0x7f;
 			int intensity0 = bytes[13] & 0xff;
 			interleavedIrCameraData[0] = new IrPoint(x0, y0, size0, xmin0, ymin0, xmax0, ymax0, intensity0);
-		
+
 			int x1 = (bytes[14] & 0xff) ^ ((bytes[16] & 0x30) << 4);
 			int y1 = (bytes[15] & 0xff) ^ ((bytes[16] & 0xc0) << 2);
 			int size1 = bytes[16] & 0x0f;
@@ -164,7 +163,7 @@ class IncomingThread extends Thread {
 			int intensity1 = bytes[22] & 0xff;
 			interleavedIrCameraData[1] = new IrPoint(x1, y1, size1, xmin1, ymin1, xmax1, ymax1, intensity1);
 		}
-		
+
 		if (reportMode == ReportModeRequest.DATA_REPORT_0x3f) {
 			int x2 = (bytes[5] & 0xff) ^ ((bytes[7] & 0x30) << 4);
 			int y2 = (bytes[6] & 0xff) ^ ((bytes[7] & 0xc0) << 2);
@@ -175,7 +174,7 @@ class IncomingThread extends Thread {
 			int ymax2 = bytes[11] & 0x7f;
 			int intensity2 = bytes[13] & 0xff;
 			interleavedIrCameraData[2] = new IrPoint(x2, y2, size2, xmin2, ymin2, xmax2, ymax2, intensity2);
-			
+
 			int x3 = (bytes[14] & 0xff) ^ ((bytes[16] & 0x30) << 4);
 			int y3 = (bytes[15] & 0xff) ^ ((bytes[16] & 0xc0) << 2);
 			int size3 = bytes[16] & 0x0f;
@@ -186,9 +185,8 @@ class IncomingThread extends Thread {
 			int intensity3 = bytes[22] & 0xff;
 			interleavedIrCameraData[3] = new IrPoint(x3, y3, size3, xmin3, ymin3, xmax3, ymax3, intensity3);
 		}
-		
-		if (interleavedIrCameraData[0] != null &&
-				interleavedIrCameraData[2] != null) {
+
+		if (interleavedIrCameraData[0] != null && interleavedIrCameraData[2] != null) {
 			IrPoint p0 = interleavedIrCameraData[0];
 			IrPoint p1 = interleavedIrCameraData[1];
 			IrPoint p2 = interleavedIrCameraData[2];
@@ -202,17 +200,17 @@ class IncomingThread extends Thread {
 		int x = 0;
 		int y = 0;
 		int z = 0;
-		
+
 		if (reportMode == ReportModeRequest.DATA_REPORT_0x3e) {
 			x = bytes[4] & 0xff;
 			z = ((bytes[3] & 0x60) << 1) ^ ((bytes[2] & 0x60) >> 1);
 		}
-		
+
 		if (reportMode == ReportModeRequest.DATA_REPORT_0x3f) {
 			y = bytes[4] & 0xff;
 			z = ((bytes[3] & 0x60) >> 3) ^ ((bytes[2] & 0x60) >> 5);
 		}
-		
+
 		if (interleavedAccelerometerData == null) {
 			interleavedAccelerometerData = new int[3];
 			interleavedAccelerometerData[0] ^= x;
@@ -239,15 +237,15 @@ class IncomingThread extends Thread {
 	}
 
 	protected void parseStatusInformation(byte[] bytes) {
-		boolean[] leds = new boolean[] { (bytes[4] & 0x10) == 0x10,
-				(bytes[4] & 0x20) == 0x20, (bytes[4] & 0x40) == 0x40,
-				(bytes[4] & 0x80) == 0x80 };
+		boolean[] leds = new boolean[] { (bytes[4] & 0x10) == 0x10, (bytes[4] & 0x20) == 0x20,
+				(bytes[4] & 0x40) == 0x40, (bytes[4] & 0x80) == 0x80 };
 		boolean extensionControllerConnected = (bytes[4] & 0x02) == 0x02;
 		boolean speakerEnabled = (bytes[4] & 0x04) == 0x04;
 		boolean continuousReportingEnabled = (bytes[4] & 0x08) == 0x08;
 		byte batteryLevel = bytes[7];
-		
-		StatusInformationReport info = new StatusInformationReport(leds, speakerEnabled, continuousReportingEnabled, extensionControllerConnected, batteryLevel);
+
+		StatusInformationReport info = new StatusInformationReport(leds, speakerEnabled, continuousReportingEnabled,
+				extensionControllerConnected, batteryLevel);
 		source.fireStatusInformationChangedEvent(info);
 	}
 
@@ -256,7 +254,7 @@ class IncomingThread extends Thread {
 			try {
 				byte[] buf = new byte[23];
 				incoming.receive(buf);
-				
+
 				if (log.isTraceEnabled()) {
 					StringBuffer sb = new StringBuffer();
 					log.trace("received:");
@@ -272,7 +270,7 @@ class IncomingThread extends Thread {
 						log.trace(sb.toString());
 					}
 				}
-				
+
 				switch (buf[1]) {
 				case ReportModeRequest.DATA_REPORT_0x20:
 					parseStatusInformation(buf);
@@ -346,7 +344,8 @@ class IncomingThread extends Thread {
 				default:
 					if (log.isDebugEnabled()) {
 						String hex = Integer.toHexString(buf[1] & 0xff);
-						log.debug("Unknown or not yet implemented data report: " + (hex.length() == 1 ? "0x0" + hex : "0x" + hex));
+						log.debug("Unknown or not yet implemented data report: "
+								+ (hex.length() == 1 ? "0x0" + hex : "0x" + hex));
 					}
 				}
 

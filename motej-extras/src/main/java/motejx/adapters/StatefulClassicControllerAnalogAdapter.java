@@ -24,19 +24,16 @@ import motejx.extensions.classic.RightAnalogTriggerEvent;
 /**
  * 
  * <p>
+ * 
  * @author <a href="mailto:vfritzsch@users.sourceforge.net">Volker Fritzsch</a>
  */
-public abstract class StatefulClassicControllerAnalogAdapter implements
-		ClassicControllerAnalogListener {
+public abstract class StatefulClassicControllerAnalogAdapter implements ClassicControllerAnalogListener {
 
 	protected LeftAnalogStickEvent latestLeftAnalogStickEvent;
 	protected RightAnalogStickEvent latestRightAnalogStickEvent;
 	protected LeftAnalogTriggerEvent latestLeftAnalogTriggerEvent;
 	protected RightAnalogTriggerEvent latestRightAnalogTriggerEvent;
-	
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#leftAnalogStickChanged(motejx.extensions.classic.LeftAnalogStickEvent)
-	 */
+
 	public void leftAnalogStickChanged(LeftAnalogStickEvent evt) {
 		if (!evt.equals(latestLeftAnalogStickEvent)) {
 			latestLeftAnalogStickEvent = evt;
@@ -46,9 +43,6 @@ public abstract class StatefulClassicControllerAnalogAdapter implements
 
 	public abstract void leftAnalogStickStateChanged(LeftAnalogStickEvent evt);
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#leftAnalogTriggerChanged(motejx.extensions.classic.LeftAnalogTriggerEvent)
-	 */
 	public void leftAnalogTriggerChanged(LeftAnalogTriggerEvent evt) {
 		if (!evt.equals(latestLeftAnalogTriggerEvent)) {
 			latestLeftAnalogTriggerEvent = evt;
@@ -58,9 +52,6 @@ public abstract class StatefulClassicControllerAnalogAdapter implements
 
 	public abstract void leftAnalogTriggerStateChanged(LeftAnalogTriggerEvent evt);
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#rightAnalogStickChanged(motejx.extensions.classic.RightAnalogStickEvent)
-	 */
 	public void rightAnalogStickChanged(RightAnalogStickEvent evt) {
 		if (!evt.equals(latestRightAnalogStickEvent)) {
 			latestRightAnalogStickEvent = evt;
@@ -70,9 +61,6 @@ public abstract class StatefulClassicControllerAnalogAdapter implements
 
 	public abstract void rightAnalogStickStateChanged(RightAnalogStickEvent evt);
 
-	/* (non-Javadoc)
-	 * @see motejx.extensions.classic.ClassicControllerAnalogListener#rightAnalogTriggerChanged(motejx.extensions.classic.RightAnalogTriggerEvent)
-	 */
 	public void rightAnalogTriggerChanged(RightAnalogTriggerEvent evt) {
 		if (!evt.equals(latestRightAnalogTriggerEvent)) {
 			latestRightAnalogTriggerEvent = evt;

@@ -44,11 +44,6 @@ public class BalanceBoard extends AbstractExtension implements DataListener {
 	
 	private EventListenerList listenerList = new EventListenerList();
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see motej.event.DataListener#dataRead(motej.event.DataEvent)
-	 */
 	public void dataRead(DataEvent evt) {
 		
 		if (evt.getError() == 0
@@ -87,11 +82,6 @@ public class BalanceBoard extends AbstractExtension implements DataListener {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see motej.Extension#initialize()
-	 */
 	public void initialize() {
 		mote.addDataListener(this);
 		
@@ -106,11 +96,6 @@ public class BalanceBoard extends AbstractExtension implements DataListener {
 		return calibrationData;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see motej.Extension#parseExtensionData(byte[])
-	 */
 	public void parseExtensionData(byte[] extensionData) {
 		fireBalanceBoardEvent(extensionData);
 	}
@@ -121,27 +106,11 @@ public class BalanceBoard extends AbstractExtension implements DataListener {
 			return;
 		}
 		
-//		if (log.isDebugEnabled()) {
-//			StringBuffer sb = new StringBuffer();
-//			log.debug("received:");
-//			for (int i = 0; i < extensionData.length; i++) {
-//				String hex = Integer.toHexString(extensionData[i] & 0xff);
-//				sb.append(hex.length() == 1 ? "0x0" : "0x").append(hex).append(" ");
-//				if ((i + 1) % 8 == 0) {
-//					log.debug(sb.toString());
-//					sb.delete(0, sb.length());
-//				}
-//			}
-//			if (sb.length() > 0) {
-//				log.debug(sb.toString());
-//			}
-//		}
-		
 		int weightA = ((extensionData[0] & 0xff) << 8) ^ (extensionData[1] & 0xff);
 		int weightB = ((extensionData[2] & 0xff) << 8) ^ (extensionData[3] & 0xff);
 		int weightC = ((extensionData[4] & 0xff) << 8) ^ (extensionData[5] & 0xff);
 		int weightD = ((extensionData[6] & 0xff) << 8) ^ (extensionData[7] & 0xff);
-//		log.debug("Weights: " + weightA + " - " + weightB + " - " + weightC + " - " + weightD);
+		log.debug("Weights: " + weightA + " - " + weightB + " - " + weightC + " - " + weightD);
 		
 		BalanceBoardEvent evt = new BalanceBoardEvent(this, weightA, weightB, weightC, weightD);
 		for (BalanceBoardListener l : listeners) {

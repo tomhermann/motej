@@ -47,20 +47,13 @@ public class WriteRegisterRequest implements MoteRequest {
 		
 		// set offset
 		System.arraycopy(offset, 0, data, 3, 3);
-//		for (int i = 0; i < 3; i++) {
-//			data[3 + i] = offset[i];
-//		}
 		
 		// size information
 		data[6] = (byte) payload.length;
 		
 		// our payload
 		System.arraycopy(payload, 0, data, 7, payload.length);
-//		for (int i = 0; i < payload.length; i++) {
-//			data[7 + i] = payload[i];
-//		}
 
 		return data;
 	}
-
 }

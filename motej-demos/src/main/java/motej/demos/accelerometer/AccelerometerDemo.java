@@ -42,7 +42,7 @@ public class AccelerometerDemo {
 		mote.addAccelerometerListener(listener);
 		mote.setReportMode(ReportModeRequest.DATA_REPORT_0x31);
 		
-		Thread.sleep(60000l);
+		Thread.sleep(60000L);
 		
 		mote.setReportMode(ReportModeRequest.DATA_REPORT_0x30);
 		mote.disconnect();

@@ -26,22 +26,17 @@ public class RightAnalogTriggerEvent extends AbstractAnalogTriggerEvent {
 		super(source, trigger);
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == this)
+		if (obj == this) {
 			return true;
+		}
 		if (obj instanceof RightAnalogTriggerEvent) {
 			return obj.hashCode() == hashCode();
 		}
 		return super.equals(obj);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		int hash = 17;

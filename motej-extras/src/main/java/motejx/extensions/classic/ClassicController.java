@@ -76,7 +76,7 @@ public class ClassicController extends AbstractExtension {
 		}
 
 		// we invert the original data as the classic controller returns
-		// button pressed as nil and thats not that useable.
+		// button pressed as nil and thats not that usable.
 		int modifiers = (((data[5] & 0xff) ^ 0xff) << 8) ^ ((data[4] & 0xff) ^ 0xff);
 
 		ClassicControllerButtonEvent evt = new ClassicControllerButtonEvent(this, modifiers);
@@ -95,11 +95,6 @@ public class ClassicController extends AbstractExtension {
 		mote.writeRegisters(new byte[] { (byte) 0xa4, 0x00, 0x40}, new byte[] { 0x00 });
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see motej.Extension#parseExtensionData(byte[])
-	 */
 	public void parseExtensionData(byte[] extensionData) {
 		decrypt(extensionData);
 		
@@ -115,11 +110,6 @@ public class ClassicController extends AbstractExtension {
 		listenerList.remove(ClassicControllerButtonListener.class, listener);
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see motej.Extension#setMote(motej.Mote)
-	 */
 	public void setMote(Mote mote) {
 		this.mote = mote;
 	}
